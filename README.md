@@ -59,6 +59,8 @@ path/to/repository/JiraToWrikeSync -t "[your_access_token]" -f "[your_wrike_fold
 
 By default, the script will display all changes that will be made and prompt you to confirm whether you'd like to proceed. This way you will have a chance to abort the update if something doesn't look right. However, if you wish to skip the confirmation and automatically push the changes, you may pass the `--push` (`-p`) flag.
 
+![Confirm Changes](confirm-changes.png "Confirm Changes")
+
 If you wish to see more detail or to debug, you may also add a `--verbose` (`-v`) flag.
 
 ## Notes & Caveats
@@ -70,3 +72,5 @@ If you wish to see more detail or to debug, you may also add a `--verbose` (`-v`
 - By default, the Jira team is synced to Wrike using the 'Assigned Team' custom field. However, this can be changed to another custom field by setting the `WRIKE_TEAM_FIELD`.
 
 - Jira scheduled start and end dates are automatically translated in Wrike based on the rules set up therein. Since Jira has no knowledge of Wrike's rules, and vice versa, this could result in Wrike never updating to the precise dates provided by Jira. Therefore, the script will continue to attempt to update the dates in Wrike as they will never be updated to match those in Jira. There's no real harm in this, but it might appear weird at first.
+
+![Wrike Custom Fields](wrike-custom-fields.png "Wrike Custom Fields")
