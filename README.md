@@ -41,7 +41,7 @@ In order to import the schedule from Jira, you must first export a CSV from an i
 
 4. Click on the "Export" button in the upper right.
 
-![Jira Portfolio Schedule Export](https://raw.githubusercontent.com/jakecarlson-administrate/JiraToWrikeSync/master/jira-schedule-export.png "Jira Portfolio Schedule Export")
+![Jira Portfolio Schedule Export](jira-schedule-export.png "Jira Portfolio Schedule Export")
 
 A CSV file will download. Now rename and move the file to the path specified by the `JIRA_SCHEDULE_FILE` option. The default location is 'schedule.csv' in the repository directory.
 
