@@ -4,7 +4,7 @@ namespace Administrate\JiraToWrikeSync;
 class WrikeTaskLoader extends CLIRoutine
 {
 
-    use WrikeAPIInterfaceable;
+    use WrikeInterfaceable;
     
     private
         $api,

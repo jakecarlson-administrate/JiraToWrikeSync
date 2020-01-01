@@ -12,7 +12,7 @@ This command-line tool takes a schedule CSV generated from Jira Portfolio and up
 
 4. Install dependencies by running `php composer.phar install`.
 
-5. Create a `.env` file by copying the example and editing it: `mv .env .env.example`.
+5. Create a `.env` file by copying the example and editing it: `cp .env.example .env`.
     - `WRIKE_ACCESS_TOKEN`: your user's permanent Wrike API access token; instructions to create one are [here](https://help.wrike.com/hc/en-us/community/posts/211849065-Get-Started-with-Wrike-s-API).
     - `WRIKE_PARENT_FOLDER`: the ID of the folder whose tasks you want to sync with Jira. You can get the ID of the folder by running the following command: `curl -g -X GET -H 'Authorization: bearer [your_access_token]' 'https://www.wrike.com/api/v4/folders'`. Search the output (Cmd+F) for the "title" attribute of the folder. The "id" attribute of the same node is what you want.
     - You can optionally configure numerous other settings if desired:
@@ -30,6 +30,20 @@ This command-line tool takes a schedule CSV generated from Jira Portfolio and up
 6. Make the script executable by running `chmod +x JiraToWrikeSync`.
         
 ## Usage
+
+In order to import the schedule from Jira, you must first export a CSV from an instance of Jira Portfolio.
+
+1. Go to the source Jira Portfolio instance.
+
+2. Click on "Reports" in the top right.
+
+3. Click on "Switch reports" in the upper left and select "Scope".
+
+4. Click on the "Export" button in the upper right.
+
+![Jira Portfolio Schedule Export](https://raw.githubusercontent.com/jakecarlson-administrate/JiraToWrikeSync/master/jira-schedule-export.png "Jira Portfolio Schedule Export")
+
+A CSV file will download. Now rename and move the file to the path specified by the `JIRA_SCHEDULE_FILE` option. The default location is 'schedule.csv' in the repository directory.
 
 Run the script from anywhere: `path/to/repository/JiraToWrikeSync`. It should work without adding any arguments so long as the `WRIKE_ACCESS_TOKEN` and `WRIKE_PARENT_FOLDER` options are configured in `.env`. However, you may pass in the following arguments at runtime:
     

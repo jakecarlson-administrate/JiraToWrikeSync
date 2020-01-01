@@ -1,7 +1,7 @@
 <?php
 namespace Administrate\JiraToWrikeSync;
 
-trait WrikeAPIInterfaceable
+trait WrikeInterfaceable
 {
 
     // Parse a Wrike API response
