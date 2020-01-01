@@ -39,7 +39,7 @@ In order to import the schedule from Jira, you must first export a CSV from an i
 
 3. Click on the "Export" button in the upper right.
 
-![Jira Portfolio Schedule Export](jira-schedule-export.png "Jira Portfolio Schedule Export")
+![Jira Portfolio Schedule Export](assets/jira-schedule-export.png "Jira Portfolio Schedule Export")
 
 A CSV file will download. Now rename and move the file to the path specified by the `JIRA_SCHEDULE_FILE` option. The default location is 'schedule.csv' in the repository directory.
 
@@ -57,7 +57,7 @@ path/to/repository/JiraToWrikeSync -t "[your_access_token]" -f "[your_wrike_fold
 
 By default, the script will display all changes that will be made and prompt you to confirm whether you'd like to proceed. This way you will have a chance to abort the update if something doesn't look right. However, if you wish to skip the confirmation and automatically push the changes, you may pass the `--push` (`-p`) flag.
 
-![Confirm Changes](confirm-changes.png "Confirm Changes")
+![Confirm Changes](assets/confirm-changes.png "Confirm Changes")
 
 If you wish to see more detail or to debug, you may also add a `--verbose` (`-v`) flag.
 
@@ -71,4 +71,4 @@ If you wish to see more detail or to debug, you may also add a `--verbose` (`-v`
 
 - Jira scheduled start and end dates are automatically translated in Wrike based on the rules set up therein. Since Jira has no knowledge of Wrike's rules, and vice versa, this could result in Wrike never updating to the precise dates provided by Jira. Therefore, the script will continue to attempt to update the dates in Wrike as they will never be updated to match those in Jira. There's no real harm in this, but it might appear weird at first.
 
-![Wrike Custom Fields](wrike-custom-fields.png "Wrike Custom Fields")
+![Wrike Custom Fields](assets/wrike-custom-fields.png "Wrike Custom Fields")

@@ -9,7 +9,7 @@ spl_autoload_register(function ($name) {
     $lastSlashPos = strrpos($name, "\\");
     if (substr($name, 0, $lastSlashPos) == __NAMESPACE__) {
         $className = substr($name, $lastSlashPos+1);
-        require_once("{$className}.php");
+        require_once("classes/{$className}.php");
     }
 });
 

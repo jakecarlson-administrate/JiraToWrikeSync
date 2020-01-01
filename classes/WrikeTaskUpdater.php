@@ -41,16 +41,19 @@ class WrikeTaskUpdater extends CLIRoutine
             $this->cli->bold()->out($issue->to_str(true));
 
             // If we can't find the referenced key, skip this one
-            if (isset($this->map[$issue->get_key()])) {
+            if (isset($this->map[$issue->get_id()])) {
 
                 // Get a reference to the Wrike task
-                $task = $this->wrikeTasks[$this->map[$issue->get_key()]];
-
+                $task = $this->wrikeTasks[$this->map[$issue->get_id()]];
 
                 // Show update for parent
+                $parentTask = null;
+                if (isset($this->wrikeTasks[$task->get_parent()])) {
+                    $parentTask = $this->wrikeTasks[$task->get_parent()]->get_jira_id();
+                }
                 $this->_show_field_update(
                     'Parent',
-                    $this->_get_parent_str($task->get_jira_key(), $this->jiraIssues),
+                    $this->_get_parent_str($parentTask, $this->jiraIssues),
                     $this->_get_parent_str($issue, $this->jiraIssues),
                     $issue->has_parent()
                 );
@@ -136,10 +139,10 @@ class WrikeTaskUpdater extends CLIRoutine
             foreach ($this->jiraIssues as $issue) {
 
                 // If we can't find the referenced key, skip this one
-                if (isset($this->map[$issue->get_key()])) {
+                if (isset($this->map[$issue->get_id()])) {
 
                     // Get a reference to the Wrike task
-                    $task = $this->wrikeTasks[$this->map[$issue->get_key()]];
+                    $task = $this->wrikeTasks[$this->map[$issue->get_id()]];
 
                     $this->_inline("{$issue->to_str()} --> {$task->to_str()}");
 
@@ -147,7 +150,7 @@ class WrikeTaskUpdater extends CLIRoutine
                     $json = [];
 
                     // Add any modified parent
-                    if (!in_array($this->map[$issue->get_key()], $task->get_old_parents())) {
+                    if (!in_array($this->map[$issue->get_id()], $task->get_old_parents())) {
 
                         // Figure out what parent to add
                         if ($issue->has_parent()) {

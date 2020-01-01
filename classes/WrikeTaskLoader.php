@@ -29,7 +29,7 @@ class WrikeTaskLoader extends CLIRoutine
             foreach ($this->orphanedTasks as $taskId) {
                 $task = $this->get_task($taskId);
                 $this->cli->bold()->red()->inline($task->to_str())
-                    ->darkGray()->out(" (Parent: {$this->_get_parent_str($task, $this->tasks)})")
+                    ->darkGray()->out(" (Parent: {$this->_get_parent_str($task->get_parent(), $this->tasks)})")
                 ;
             }
             $this->cli->br()->br();
@@ -74,8 +74,8 @@ class WrikeTaskLoader extends CLIRoutine
     private function _map_jira_to_wrike() {
         if ($this->_debug()) $this->_inline("Mapping Jira issues to Wrike tasks");
         foreach ($this->tasks as $task) {
-            if (!empty($task->get_jira_key())) {
-                $this->jiraWrikeMap[$task->get_jira_key()] = $task->get_id();
+            if (!empty($task->get_jira_id())) {
+                $this->jiraWrikeMap[$task->get_jira_id()] = $task->get_id();
             } else {
                 $this->orphanedTasks[] = $task->get_id();
             }

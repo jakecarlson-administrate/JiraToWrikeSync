@@ -8,10 +8,12 @@ abstract class CLIRoutine
 
     protected $cli;
 
+    // Constructor
     public function __construct() {
         $this->cli = new \League\CLImate\CLImate;
     }
 
+    // Get a CLI argument, fallback to default
     protected function _get_cli_argument($name, $default) {
         $arg = $this->cli->arguments->get($name);
         if (empty($arg)) {
@@ -23,17 +25,17 @@ abstract class CLIRoutine
         return $arg;
     }
 
-    protected function _get_parent_str($obj, $objs) {
-        if (!is_object($obj) && !empty($obj) && isset($objs[$obj])) {
-            $obj = $objs[$obj];
+    // Normalize the parent string
+    protected function _get_parent_str($parentId, $objs) {
+        if (is_object($parentId)) {
+            $parentId = $parentId->get_parent();
         }
-        if (is_object($obj) && $obj->has_parent()) {
-            $parent = $objs[$obj->get_parent()];
-            return $parent->to_str();
+        if (isset($objs[$parentId])) {
+            $obj = $objs[$parentId];
+            return $obj->to_str();
         }
         return 'none';
     }
-
 
     // CLI helpers
     protected function _header($str) { $this->cli->bold()->cyan()->out($str)->cyan()->border('-', 48)->br(); return $this; }

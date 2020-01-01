@@ -25,7 +25,7 @@ class JiraIssueLoader extends CLIRoutine
             foreach ($orphanKeys as $key) {
                 $issue = $this->get_issue($key);
                 $this->cli->bold()->red()->inline($issue->to_str())
-                    ->darkGray()->out("(Parent: {$this->_get_parent_str($issue, $this->issues)})")
+                    ->darkGray()->out("(Parent: {$this->_get_parent_str($issue->get_parent(), $this->issues)})")
                 ;
             }
             $this->cli->br()->br();
@@ -60,7 +60,7 @@ class JiraIssueLoader extends CLIRoutine
         if ($this->_debug()) $this->_inline("Mapping initiative names");
         foreach ($this->issues as $issue) {
             if ($issue->is_initiative()) {
-                $this->initiatives[$issue->get_title()] = $issue->get_key();
+                $this->initiatives[$issue->get_title()] = $issue->get_id();
             }
         }
         if ($this->_debug()) $this->_success();
