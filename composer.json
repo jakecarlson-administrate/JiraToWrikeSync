@@ -1,0 +1,17 @@
+{
+    "name": "administrate/wrike-sync",
+    "description": "Update Wrike with Jira Portfolio export.",
+    "type": "project",
+    "require": {
+        "zibios/wrike-php-sdk": "^1.0",
+        "guzzlehttp/guzzle": "^6.5",
+        "vlucas/phpdotenv": "^4.1",
+        "league/climate": "^3.5"
+    },
+    "authors": [
+        {
+            "name": "Jake Carlson",
+            "email": "jakec@administrate.co"
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+#!/usr/bin/php
+<?php
+namespace Administrate\JiraToWrikeSync;
+
+require_once('./vendor/autoload.php');
+
+// Autoload classes
+spl_autoload_register(function ($name) {
+    $lastSlashPos = strrpos($name, "\\");
+    if (substr($name, 0, $lastSlashPos) == __NAMESPACE__) {
+        $className = substr($name, $lastSlashPos+1);
+        require_once("{$className}.php");
+    }
+});
+
+// Load environment vars
+$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Load the configuration w/ defaults
+require_once('./config.php');
+
+// Initialize WrikeUpdater
+$j2wSync = new JiraToWrikeSync(
+    $_CFG['jira']['schedule_file'],
+    [
+        'key'   =>  $_CFG['jira']['key_field'],
+        'title' =>  $_CFG['jira']['title_field'],
+        'type'  =>  $_CFG['jira']['type_field'],
+        'parent'=>  $_CFG['jira']['parent_field'],
+        'start' =>  $_CFG['jira']['start_field'],
+        'end'   =>  $_CFG['jira']['end_field'],
+        'team'  =>  $_CFG['jira']['team_field'],
+    ],
+    [
+        'access_token'  =>  $_CFG['wrike']['access_token'],
+        'parent_folder' =>  $_CFG['wrike']['parent_folder'],
+        'jira_key_field'=>  $_CFG['wrike']['jira_key_field'],
+        'team_field'    =>  $_CFG['wrike']['team_field'],
+    ]
+);
+
+// Run it
+$j2wSync->run();
