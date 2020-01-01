@@ -33,13 +33,11 @@ This command-line tool takes a schedule CSV generated from Jira Portfolio and up
 
 In order to import the schedule from Jira, you must first export a CSV from an instance of Jira Portfolio.
 
-1. Go to the source Jira Portfolio instance.
+1. From the source Jira Portfolio instance, click on "Reports" in the top right.
 
-2. Click on "Reports" in the top right.
+2. Click on "Switch reports" in the upper left and select "Scope".
 
-3. Click on "Switch reports" in the upper left and select "Scope".
-
-4. Click on the "Export" button in the upper right.
+3. Click on the "Export" button in the upper right.
 
 ![Jira Portfolio Schedule Export](jira-schedule-export.png "Jira Portfolio Schedule Export")
 
