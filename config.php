@@ -1,6 +1,6 @@
 <?php
 
-$_CFG = [
+return [
 
     'jira'  =>  [
         'schedule_file' =>  $_ENV['JIRA_SCHEDULE_FILE'] ?? './schedule.csv',
