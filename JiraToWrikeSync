@@ -20,7 +20,7 @@ $dotenv->load();
 // Load the configuration w/ defaults
 $_CFG = include('./config.php');
 
-// Initialize WrikeUpdater
+// Initialize main controller class
 $j2wSync = new JiraToWrikeSync(
     $_CFG['jira']['schedule_file'],
     [
